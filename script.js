@@ -83,10 +83,13 @@ let app = new Vue({
       if (!(this.number in this.ratings))
         Vue.set(this.ratings, this.number, {
           sum: 0,
-          total: 0
+          total: 0,
+          average: 0,
         });
       this.ratings[this.number].sum += rating;
       this.ratings[this.number].total += 1;
+      //this.averageRating = this.ratings[this.number].sum/this.ratings[this.number].total;
+      this.ratings[this.number].average = this.ratings[this.number].sum/this.ratings[this.number].total;
     },
   },
   computed: {
@@ -108,7 +111,16 @@ let app = new Vue({
       month[10] = "November";
       month[11] = "December";
       return month[this.current.month - 1];
-    }
+    },
+    computeAverage() {
+      averageRating = '';
+      if(this.number in this.ratings) {
+        averageRating = this.ratings[this.number].sum/this.ratings[this.number].total;
+      } else {
+        averageRating = 0;
+      }
+      return averageRating;
+    },
   },
   //Watch is called because it is watching the function to see if anything
   //inside the function changes, then it will run
