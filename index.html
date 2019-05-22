@@ -31,7 +31,7 @@
           <h4> Current rating of this joke is {{computeAverage}} </h4>
         </p>
       </div>
-      <star-rating @rating-selected="setRating"></star-rating>
+      <star-rating @rating-selected="setRating" v-bind:increment="0.5" active-color="red" v-bind:show-rating="false"></star-rating>
     </div>
     <h3>Add a Comment</h3>
       <form v-on:submit.prevent="addComment">
